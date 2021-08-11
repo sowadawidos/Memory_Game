@@ -1,0 +1,31 @@
+.header {
+  height: 50px;
+  .container {
+    margin: 0 40px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .header__logo {
+      font-size: 36px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #db1818;
+      font-family: 'Fjalla One', sans-serif;
+      span {
+        color: #4dc64d;
+      }
+    }
+    .exit__game {
+      font-size: 18px;
+      padding: 10px 35px;
+      color: black;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid #bfbfbf;
+      border-radius: 20px;
+      box-shadow: 1px 1px 5px #5d5d5d;
+      background-color: white;
+    }
+  }
+}
