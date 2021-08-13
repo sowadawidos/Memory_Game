@@ -4,60 +4,25 @@ import {GameBoard} from "../GameBoard/GameBoard";
 import {Header} from "../Header/Header";
 import {EndGame} from "../EndGame/EndGame";
 
-export const GamePage = ({getUser}) => {
-    const figures = [
-        {
-            figure: "😇",
-            id: 1
-        },
-        {
-            figure: "😡",
-            id: 2
-        },
-        {
-            figure: "🤡",
-            id: 3
-        },
-        {
-            figure: "👻",
-            id: 4
-        },
-        {
-            figure: "🐵",
-            id: 5
-        },
-        {
-            figure: "🐹",
-            id: 6
-        },
-        {
-            figure: "🐯",
-            id: 7
-        },
-        {
-            figure: "🦧",
-            id: 8
-        },
-        {
-            figure: "🐍",
-            id: 9
-        }]
-
+export const GamePage = ({getUser, figuresArr}) => {
     const [points, setPoints] = useState(0)
     const [moves, setMoves] = useState(0)
     const [blur, setBlur] = useState(false);
+    const [blurLose, setBlurLose] = useState(false);
     const [time, setTime] = useState(50)
 
-    // useEffect(() => {
-    //     const interval =
-    //         time > 0 && setInterval(() => {
-    //         setTime(prev => prev - 1)
-    //         return () => clearInterval(interval)
-    //     }, 1000)
-    // }, [time])
 
-    const figuresArr = figures.concat(figures)
-        // .sort(() => Math.random() - 0.5)
+    useEffect(() => {
+        const interval =
+            time > 0 && setInterval(() => {
+                setTime(prev => prev - 1)
+            }, 1000)
+        if (time === 0 || points === 9) {
+            clearInterval(interval)
+            setBlurLose(true)
+        }
+        return () => clearInterval(interval)
+    }, [time])
 
     useEffect(() => {
         if (points === 9) {
@@ -68,7 +33,7 @@ export const GamePage = ({getUser}) => {
     return (
         <>
             <Header/>
-            <section className="game__page" style={blur ? {filter: "blur(4px)"} : {}}>
+            <section className="game__page" style={blur || blurLose? {filter: "blur(4px)"} : {}}>
                 <div className="container">
                     <div className="game__page-info">
                         <h1 className="game__page-time">
@@ -85,7 +50,10 @@ export const GamePage = ({getUser}) => {
                 </div>
             </section>
             {
-                blur && <EndGame points={points} moves={moves} getUser={getUser} time={time}/>
+                blur && <EndGame points={points} moves={moves} getUser={getUser} time={time} text={"You won!"} blur={blur} blurLose={blurLose}/>
+            }
+            {
+                blurLose && <EndGame points={points} moves={moves} getUser={getUser} time={time} text={"Time's up!"} blurLose={blurLose} blur={blur}/>
             }
         </>
     )

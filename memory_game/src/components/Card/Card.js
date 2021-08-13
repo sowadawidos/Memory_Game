@@ -29,7 +29,7 @@ export const Card = ({card, getID, matchedIndex, setMove, index}) => {
                         </div>
                         :
                         <div className="card-back" onClick={handleActive}>
-                            ?
+                            <span>?</span>
                         </div>
                 }
             </div>

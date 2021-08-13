@@ -27,7 +27,7 @@ export const GameBoard = ({setPoints, setMoves, figuresArr}) => {
         <>
             <div className="game__board">
                 {
-                    figuresArr.map(figure => <Card card={figure} getID={getID} matchedIndex={matchedIndex} setMove={setMoves} index={index}/>)
+                    figuresArr && figuresArr.map(figure => <Card card={figure} getID={getID} matchedIndex={matchedIndex} setMove={setMoves} index={index}/>)
                 }
             </div>
         </>

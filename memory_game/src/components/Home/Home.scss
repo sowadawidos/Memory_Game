@@ -14,7 +14,8 @@
       height: 700px;
       border: 1px solid #bfbfbf;
       border-radius: 20px;
-      box-shadow: 1px 1px 30px #5d5d5d;
+      box-shadow: 12px 12px 2px 0;
+      color: grey;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -24,6 +25,7 @@
         font-weight: 600;
         margin-bottom: 50px;
         animation: move 3s 0s infinite ease-in-out;
+        color: black;
       }
       .home__box-button {
         text-transform: uppercase;
@@ -38,7 +40,10 @@
         font-family: $font-base;
         transition: 0.5s;
         &:hover {
-          transform: rotate(360deg);
+          transform: translate(20px);
+        }
+        &:focus {
+          transform: translate(1000px);
         }
       }
     }

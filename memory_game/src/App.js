@@ -12,7 +12,47 @@ import {db} from "./API/API"
 import {Leaderboard} from "./components/Leaderboard/Leaderboard";
 
 function App() {
+    const figures = [
+        {
+            figure: "😇",
+            id: 1
+        },
+        {
+            figure: "😡",
+            id: 2
+        },
+        {
+            figure: "🤡",
+            id: 3
+        },
+        {
+            figure: "👻",
+            id: 4
+        },
+        {
+            figure: "🐵",
+            id: 5
+        },
+        {
+            figure: "🐹",
+            id: 6
+        },
+        {
+            figure: "🐯",
+            id: 7
+        },
+        {
+            figure: "🦧",
+            id: 8
+        },
+        {
+            figure: "🐍",
+            id: 9
+        }]
+
     const [leaderboard, setLeaderboard] = useState()
+
+    const figuresArr = figures.concat(figures).sort(() => Math.random() - 0.5)
 
     const getUser = user => {
         if (db) {
@@ -24,7 +64,7 @@ function App() {
                 })
         }
     }
-    
+    console.log(figuresArr)
     useEffect(() => {
         if (db) {
             db.collection('leaderboard').onSnapshot(querySnapshot => {
@@ -44,7 +84,7 @@ function App() {
                         <Home/>
                     </Route>
                     <Route path="/game-board">
-                        <GamePage getUser={getUser}/>
+                        <GamePage getUser={getUser} figuresArr={figuresArr}/>
                     </Route>
                     <Route path="/leaderboard">
                         <Leaderboard leaderboard={leaderboard}/>
